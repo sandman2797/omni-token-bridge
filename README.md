@@ -9,7 +9,7 @@ Because he lost $350 worth of $OMNI [here](https://polygonscan.com/tx/0x16a9ce82
 If you're a frontend person, pls submit PRs to make this better. Any donation it get from the Donate button will be shared with the contributors. 
 
 ### TODO
-[] Add support for WalletConnect
-[] Redesign to look prettier. CSS magicians pls contribute
-[] Add support for Canto
-[] Add support for Solana and Solana wallets. 
+1. Add support for WalletConnect
+2. Redesign to look prettier. CSS magicians pls contribute
+3. Add support for Canto
+4. Add support for Solana and Solana wallets. 
