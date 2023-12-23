@@ -306,7 +306,7 @@ const Index = () => {
         <Heading as="h1" size="xl">
           Omni Swap
         </Heading>
-        <Link href="https://example.com/donate" isExternal>
+        <Link href="https://arbiscan.io/address/0x949fa78174096543106ab1acce33f02d0243fee6" isExternal>
           <Button colorScheme="green" size="sm" mr={4}>
             Donate
           </Button>
