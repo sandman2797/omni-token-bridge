@@ -15,5 +15,5 @@ If you're a frontend person, pls submit PRs to make this better. Any donation it
 3. Add support for Canto
 4. Add support for Solana and Solana wallets. 
 
-### Disclosure
+### Disclaimer
 I do not endorse OMNI token, nor am I from the OMNI token deployer team. I am just a community member who lost some money. 
