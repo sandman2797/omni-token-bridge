@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from '@chakra-ui/react';
+import { Link, ring } from "@chakra-ui/react";
 import { BigNumber, utils, ethers } from "ethers";
 import {
   chainIdMapping,
@@ -18,6 +18,9 @@ import {
   FormLabel,
   Heading,
   Input,
+  InputGroup,
+  InputRightElement,
+  InputRightAddon,
   Select,
   Stack,
   useToast,
@@ -115,9 +118,7 @@ const Index = () => {
     const balance = await contract.balanceOf(userAddress);
     const remainder = balance.mod(BigNumber.from("10000000000000000"));
     const formattedValue = utils.formatUnits(balance.sub(remainder), 18);
-    setTokenBalance(
-      formattedValue
-    );
+    setTokenBalance(formattedValue);
   };
 
   // Soon as a wallet is connected
@@ -130,7 +131,7 @@ const Index = () => {
         // Perform async operations here
         const network = await provider.getNetwork();
         setCurrNetwork(network.name);
-        console.log("Connected Network:", network.name); // E.g., "mainnet", "ropsten", "rinkeby", etc.
+        // console.log("Connected Network:", network.name); // E.g., "mainnet", "ropsten", "rinkeby", etc.
       } catch (error) {
         // Handle any errors that occur during the async operation
         console.error("Error fetching network:", error);
@@ -304,7 +305,10 @@ const Index = () => {
         <Heading as="h1" size="xl">
           Omni Swap
         </Heading>
-        <Link href="https://arbiscan.io/address/0x949fa78174096543106ab1acce33f02d0243fee6" isExternal>
+        <Link
+          href="https://arbiscan.io/address/0x949fa78174096543106ab1acce33f02d0243fee6"
+          isExternal
+        >
           <Button colorScheme="green" size="sm" mr={4}>
             Donate
           </Button>
@@ -322,8 +326,7 @@ const Index = () => {
               <Button
                 ml={2}
                 leftIcon={<FaExchangeAlt />}
-                colorScheme="orange"
-                size="sm"
+                colorScheme="red"
                 onClick={() => {
                   handleSwitchNetwork();
                 }}
@@ -344,8 +347,14 @@ const Index = () => {
         )}
       </Flex>
 
-      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={6}>
-        <Stack spacing={4}>
+      <Box
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        p={6}
+        variant="dark"
+      >
+        <Stack spacing={4} variant="dark">
           <FormControl id="fromToken">
             <FormLabel>From</FormLabel>
             <Select
@@ -361,22 +370,25 @@ const Index = () => {
               <option value="bnb">BNB</option>
             </Select>
             <Flex>
-              <Input
-                type="number"
-                placeholder="Enter amount"
-                value={fromTokenAmount}
-                onChange={(e) => setFromTokenAmount(e.target.value)}
-                isRequired
-              />
-              <Button
-                size="sm"
-                onClick={() => setFromTokenAmount(tokenBalance)}
-              >
-                Max
-              </Button>
-              <Box p={2} borderWidth="1px" borderRadius="md">
-                Balance: {tokenBalance} OMNI
-              </Box>
+              <InputGroup size="md">
+                <Input
+                  pr="4.5rem"
+                  // type={show ? "text" : "password"}
+                  type="number"
+                  placeholder="Enter amount"
+                  value={fromTokenAmount}
+                  onChange={(e) => setFromTokenAmount(e.target.value)}
+                  isRequired
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={() => setFromTokenAmount(tokenBalance)}>
+                    Max
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+            </Flex>
+            <Flex flexDirection="column" alignItems="flex-end">
+            <p alignItems="right">Token Balance: {tokenBalance}</p>
             </Flex>
           </FormControl>
 
@@ -429,8 +441,7 @@ const Index = () => {
             <Button
               ml={2}
               leftIcon={<FaExchangeAlt />}
-              colorScheme="orange"
-              size="sm"
+              colorScheme="red"
               onClick={() => {
                 {
                   handleSwitchNetwork();
@@ -446,12 +457,16 @@ const Index = () => {
         <></>
       ) : (
         <p>
-          Check your txn status on LayerZeroScan: 
+          Check your txn status on LayerZeroScan:
           <a
             href={`https://layerzeroscan.com/tx/${txHash}`}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}
+            style={{
+              color: "blue",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
           >
             LINK
           </a>
