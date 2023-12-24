@@ -113,12 +113,10 @@ const Index = () => {
     );
 
     const balance = await contract.balanceOf(userAddress);
-    console.log("Contract Balance:", balance.toString());
-    const integerValue = balance.div(BigNumber.from("1000000000000000000")); // Resulting integer
-    const remainder = balance.mod(BigNumber.from("1000000000000000000"));
-
+    const remainder = balance.mod(BigNumber.from("10000000000000000"));
+    const formattedValue = utils.formatUnits(balance.sub(remainder), 18);
     setTokenBalance(
-      integerValue.toString() + "." + remainder.toString().slice(0, 4)
+      formattedValue
     );
   };
 
